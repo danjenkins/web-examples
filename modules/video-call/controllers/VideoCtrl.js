@@ -7,9 +7,6 @@ App.controllers.videoCtrl = (function ($, App) {
 
         var $el;
 
-        var remoteVideoTotalBytes;
-        var localVideoTotalBytes;
-
         // Removes the entire video template from the DOM
         function removeTemplate () {
             $el.find('.video-contain').remove();
@@ -26,15 +23,6 @@ App.controllers.videoCtrl = (function ($, App) {
 
             // TODO: This is a temporary workaround. It will be played automatically in the future
             video.play();
-        }
-
-        function renderRemoteMediaStats (stats) {
-
-            var localVideoPeriodBytes = stats.stats.localvideo.totalBytesSent - localVideoTotalBytes;
-            var remoteVideoPeriodBytes = stats.stats.remotevideo.totalBytesReceived - remoteVideoTotalBytes;
-
-
-            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (stats.stats.remotevideo.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + stats.stats.localvideo.codec + ' :' + (stats.stats.localvideo.periodBytesSent / 1024).toFixed(2) + ' KB</b>');
         }
 
         // Hangs up the current call
@@ -74,7 +62,7 @@ App.controllers.videoCtrl = (function ($, App) {
                 // Hide the local video
                 $el.find('.video-small').hide();
 
-                // Calls the onMuteVideo method from the options so that
+                // Calls the onMuteVideo method from the options so that 
                 // the connected endpoint will no longer see our video
                 options.onMuteVideo();
 
@@ -138,8 +126,7 @@ App.controllers.videoCtrl = (function ($, App) {
         return {
             renderLocalMedia: renderLocalMedia,
             renderRemoteMedia: renderRemoteMedia,
-            removeTemplate: removeTemplate,
-            renderRemoteMediaStats: renderRemoteMediaStats
+            removeTemplate: removeTemplate
         };
 
     };

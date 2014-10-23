@@ -124,7 +124,7 @@ App.controllers.videoCallCtrl = (function ($, App) {
 
             // Remove the endpoint from the buddy list
             ctrl.buddyList.removeMember(e.connection.endpointId);
-
+            
         }
 
         // A callback when a member joins the group
@@ -198,17 +198,6 @@ App.controllers.videoCallCtrl = (function ($, App) {
             if (ctrl.callPreview) {
                 ctrl.callPreview.removePreview();
             }
-
-            call.getStats({
-                onStats: function continualStatsHandler(evt) {
-                    ctrl.video.renderRemoteMediaStats(evt);
-                },
-                interval: 1000
-            }).done(function success(evt){
-
-            }, function fail(evt){
-
-            });
 
             // Render the video to the video-chat element
             ctrl.video = App.controllers.videoCtrl({

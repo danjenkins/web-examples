@@ -10,7 +10,7 @@
     App.models.client = function (endpointId, cb) {
 
         var client = respoke.createClient({
-            appId: '71a6f0fc-7f56-4adc-bfc7-bda782d1289c',
+            appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
             developmentMode: true
         });
 
