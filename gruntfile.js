@@ -8,6 +8,7 @@ module.exports = function (grunt) {
         'app/js/app.js',
         'app/js/lib/**/*.js',
         'app/js/models/**/*.js',
+        'app/js/respoke/**/*.js',
         'app/js/collections/**/*.js',
         'app/css/**/*.css'
     ];
