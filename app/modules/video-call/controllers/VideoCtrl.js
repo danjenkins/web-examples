@@ -7,9 +7,6 @@ App.controllers.videoCtrl = (function ($, App) {
 
         var $el;
 
-        var remoteVideoTotalBytes;
-        var localVideoTotalBytes;
-
         // Removes the entire video template from the DOM
         function removeTemplate () {
             $el.find('.video-contain').remove();
@@ -29,10 +26,6 @@ App.controllers.videoCtrl = (function ($, App) {
         }
 
         function renderRemoteMediaStats (stats) {
-
-            var localVideoPeriodBytes = stats.stats.localvideo.totalBytesSent - localVideoTotalBytes;
-            var remoteVideoPeriodBytes = stats.stats.remotevideo.totalBytesReceived - remoteVideoTotalBytes;
-
 
             $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (stats.stats.remotevideo.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + stats.stats.localvideo.codec + ' :' + (stats.stats.localvideo.periodBytesSent / 1024).toFixed(2) + ' KB</b>');
         }
