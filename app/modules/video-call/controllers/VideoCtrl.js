@@ -25,6 +25,10 @@ App.controllers.videoCtrl = (function ($, App) {
             video.play();
         }
 
+        function renderRemoteMediaStats (stats) {
+            $el.find('.video-contain .stats').html('<b>Audio Received: ' + stats.stats.remoteaudio.periodBytesReceived / 1024 + ' MB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + stats.stats.localaudio.periodBytesSent / 1024 + ' MB</b>');
+        }
+
         // Hangs up the current call
         function hangup () {
             removeTemplate();
@@ -62,7 +66,7 @@ App.controllers.videoCtrl = (function ($, App) {
                 // Hide the local video
                 $el.find('.video-small').hide();
 
-                // Calls the onMuteVideo method from the options so that 
+                // Calls the onMuteVideo method from the options so that
                 // the connected endpoint will no longer see our video
                 options.onMuteVideo();
 
