@@ -5,10 +5,10 @@ var path = require('path'),
 module.exports = function (grunt) {
 
     var files = [
+        'app/js/respoke/**/*.js',
         'app/js/app.js',
         'app/js/lib/**/*.js',
         'app/js/models/**/*.js',
-        'app/js/respoke/**/*.js',
         'app/js/collections/**/*.js',
         'app/css/**/*.css'
     ];
