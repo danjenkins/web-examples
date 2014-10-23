@@ -485,8 +485,6 @@
             var stats = rawStats; // might need to re-instate some sort of wrapper here
             var results = stats.result();
 
-            console.log(results, stats);
-
             var allStats = {
                 state: {
                     iceGatheringState: pc.icegatheringState,
