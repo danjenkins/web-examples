@@ -30,19 +30,11 @@ App.controllers.videoCtrl = (function ($, App) {
 
         function renderRemoteMediaStats (stats) {
 
-
-            console.log('localVideoTotalBytes', localVideoTotalBytes, stats.stats.localvideo);
-            console.log('remoteVideoTotalBytes', remoteVideoTotalBytes, stats.stats.remotevideo);
-
-
             var localVideoPeriodBytes = stats.stats.localvideo.totalBytesSent - localVideoTotalBytes;
             var remoteVideoPeriodBytes = stats.stats.remotevideo.totalBytesReceived - remoteVideoTotalBytes;
 
-            localVideoTotalBytes = stats.stats.localvideo.totalBytesSent;
-            remoteVideoTotalBytes = stats.stats.remotevideo.totalBytesReceived;
 
-
-            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (localVideoTotalBytes / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + (remoteVideoPeriodBytes / 1024).toFixed(2) + ' KB</b>');
+            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (stats.stats.remotevideo.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + stats.stats.localvideo.codec + ' :' + (stats.stats.localvideo.periodBytesSent / 1024).toFixed(2) + ' KB</b>');
         }
 
         // Hangs up the current call
