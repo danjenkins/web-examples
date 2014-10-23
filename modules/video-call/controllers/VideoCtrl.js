@@ -27,7 +27,7 @@ App.controllers.videoCtrl = (function ($, App) {
 
         function renderRemoteMediaStats (stats) {
 
-            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (stats.stats.remotevideo.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + stats.stats.localvideo.codec + ' :' + (stats.stats.localvideo.periodBytesSent / 1024).toFixed(2) + ' KB</b>');
+            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' Kb/s</b><br />Video Received: ' + (stats.stats.remotevideo.periodBytesReceived / 1024).toFixed(2) + ' Kb/s</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' Kb/s</b><br /><b>Video Sent: ' + stats.stats.localvideo.codec + ' :' + (stats.stats.localvideo.periodBytesSent / 1024).toFixed(2) + ' Kb/s</b>');
         }
 
         // Hangs up the current call
