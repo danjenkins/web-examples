@@ -7,6 +7,9 @@ App.controllers.videoCtrl = (function ($, App) {
 
         var $el;
 
+        var remoteVideoTotalBytes;
+        var localVideoTotalBytes;
+
         // Removes the entire video template from the DOM
         function removeTemplate () {
             $el.find('.video-contain').remove();
@@ -26,7 +29,20 @@ App.controllers.videoCtrl = (function ($, App) {
         }
 
         function renderRemoteMediaStats (stats) {
-            $el.find('.video-contain .stats').html('<b>Audio Received: ' + stats.stats.remoteaudio.periodBytesReceived / 1024 + ' MB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + stats.stats.localaudio.periodBytesSent / 1024 + ' MB</b>');
+
+
+            console.log('localVideoTotalBytes', localVideoTotalBytes, stats.stats.localvideo);
+            console.log('remoteVideoTotalBytes', remoteVideoTotalBytes, stats.stats.remotevideo);
+
+
+            var localVideoPeriodBytes = stats.stats.localvideo.totalBytesSent - localVideoTotalBytes;
+            var remoteVideoPeriodBytes = stats.stats.remotevideo.totalBytesReceived - remoteVideoTotalBytes;
+
+            localVideoTotalBytes = stats.stats.localvideo.totalBytesSent;
+            remoteVideoTotalBytes = stats.stats.remotevideo.totalBytesReceived;
+
+
+            $el.find('.video-contain .stats').html('<b>Audio Received: ' + (stats.stats.remoteaudio.periodBytesReceived / 1024).toFixed(2) + ' KB</b><br />Video Received: ' + (localVideoTotalBytes / 1024).toFixed(2) + ' KB</b><br /><b>Audio Sent: ' + stats.stats.localaudio.codec + ' : ' + (stats.stats.localaudio.periodBytesSent / 1024).toFixed(2) + ' KB</b><br /><b>Video Sent: ' + (remoteVideoPeriodBytes / 1024).toFixed(2) + ' KB</b>');
         }
 
         // Hangs up the current call
@@ -130,7 +146,8 @@ App.controllers.videoCtrl = (function ($, App) {
         return {
             renderLocalMedia: renderLocalMedia,
             renderRemoteMedia: renderRemoteMedia,
-            removeTemplate: removeTemplate
+            removeTemplate: removeTemplate,
+            renderRemoteMediaStats: renderRemoteMediaStats
         };
 
     };

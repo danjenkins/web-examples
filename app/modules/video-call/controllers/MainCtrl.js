@@ -202,7 +202,8 @@ App.controllers.videoCallCtrl = (function ($, App) {
             call.getStats({
                 onStats: function continualStatsHandler(evt) {
                     ctrl.video.renderRemoteMediaStats(evt);
-                }
+                },
+                interval: 1000
             }).done(function success(evt){
 
             }, function fail(evt){
